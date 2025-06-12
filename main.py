@@ -3,6 +3,7 @@ from discord.ext import commands
 import os
 from dotenv import load_dotenv
 from Games import Games
+from Admin import Admin
 
 
 
@@ -19,6 +20,7 @@ async def on_ready():
     print("Tofu test is online and ready to serve!")
     try:
         await bot.add_cog(Games(bot))
+        await bot.add_cog(Admin(bot))
         synced = len(bot.commands)
         print(f"{synced} commands synced.")
     except Exception as e:
