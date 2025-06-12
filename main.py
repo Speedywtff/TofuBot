@@ -9,14 +9,14 @@ from Games import Games
 load_dotenv()
 token = os.getenv('TOKEN')
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix = '%', intents = intents)
+bot = commands.Bot(command_prefix = '.', intents = intents)
 
 
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name} (ID: {bot.user.id})")
-    print("Tofu is online and ready to serve!")
+    print("Tofu test is online and ready to serve!")
     try:
         await bot.add_cog(Games(bot))
         synced = len(bot.commands)
