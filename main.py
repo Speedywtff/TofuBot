@@ -1,25 +1,26 @@
 import discord
 from discord.ext import commands
-from dotenv import load_dotenv
 import os
-
-
+from dotenv import load_dotenv
 from Games import Games
+from Admin import Admin
 
 
 
-token = os.environ.get('token')
+load_dotenv()
+token = os.getenv('TOKEN')
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix = '%', intents = intents)
+bot = commands.Bot(command_prefix = '.', intents = intents)
 
 
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name} (ID: {bot.user.id})")
-    print("Tofu is online and ready to serve!")
+    print("Tofu test is online and ready to serve!")
     try:
         await bot.add_cog(Games(bot))
+        await bot.add_cog(Admin(bot))
         synced = len(bot.commands)
         print(f"{synced} commands synced.")
     except Exception as e:
