@@ -51,6 +51,7 @@ class Games(commands.Cog):
                 except asyncio.TimeoutError:
                     await ctx.send(f"{currentPlayer} did not respond in time! {opponentPlayer} wins!")
                     break
+                
                 await ctx.send(choice)
             
                 if choice == "BANG! You're dead!":
