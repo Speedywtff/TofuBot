@@ -7,8 +7,8 @@ import os
 from Games import Games
 
 
-load_dotenv()
-token = os.getenv('TOKEN')
+
+token = os.environ.get('token')
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix = '%', intents = intents)
 
