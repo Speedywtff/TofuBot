@@ -1,14 +1,13 @@
 import discord
 from discord.ext import commands
-from dotenv import load_dotenv
 import os
-
-
+from dotenv import load_dotenv
 from Games import Games
 
 
 
-token = os.environ.get('token')
+load_dotenv()
+token = os.getenv('TOKEN')
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix = '%', intents = intents)
 
