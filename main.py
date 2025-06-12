@@ -20,8 +20,8 @@ async def on_ready():
     print("Tofu is online and ready to serve!")
     try:
         await bot.add_cog(Games(bot))
-        synced = await bot.tree.sync()
-        print(f"{len(synced)} commands synced.")
+        synced = len(bot.commands)
+        print(f"{synced} commands synced.")
     except Exception as e:
         print(f"Error syncing commands: {e}")
 
