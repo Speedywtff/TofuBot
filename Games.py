@@ -1,9 +1,9 @@
 import random
-import typing
+import time
 import asyncio
 import discord
 from discord.ext import commands
-from CardGames.DefineCards import DefineCards
+from CardGames.Blackjack import Blackjack
 
 class Games(commands.Cog):
     def __init__(self, bot):
@@ -66,10 +66,15 @@ class Games(commands.Cog):
     @commands.command()
     async def blackjack(self, ctx):
         await ctx.send(f"{ctx.author.mention} wants to play blackjack!")
-        dealer = DefineCards()
-        player = DefineCards()
-        await ctx.send(f"Dealer card: {dealer.getRandomCard()}")
-        await ctx.send(f"Player card: {player.getRandomCard()}")
+        dealer = Blackjack()
+        player = Blackjack()
+        time.sleep(2)
+        await ctx.send("The game is beginning!")
+        dFirstCard = dealer.getCard()
+        await ctx.send(f"The dealers first card is: {dFirstCard["value"]} of {dFirstCard["suite"]}")
+        pFirstCard = player.getCard()
+        time.sleep(1)
+        await ctx.send(f"The players first card is: {pFirstCard["value"]} of {pFirstCard["suite"]}")
 
 
             

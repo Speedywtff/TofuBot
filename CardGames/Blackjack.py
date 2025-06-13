@@ -1,4 +1,4 @@
-from DefineCards import DefineCards
+from .DefineCards import DefineCards
 
 class Blackjack(DefineCards):
     def __init__(self, player = True):
@@ -6,15 +6,12 @@ class Blackjack(DefineCards):
         self.values = {"2" : 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "10" : 10, "Jack": 10, "Queen": 10, "King": 10, "Ace": 0}
         self.deck = []
         self.total = 0
-        self.player = player
         self.lost = False
     
 
     def peek(self):
-        if self.player:
-            return self.deck
-        else:
-            return None 
+        return self.deck
+
     
     def checkTotal(self):
         return self.total
@@ -42,6 +39,7 @@ class Blackjack(DefineCards):
     def getCard(self):
         Card = DefineCards().getRandomCard()
         self.deck.append(Card["value"])
+        return Card
     
     def isLost(self):
         return self.lost
