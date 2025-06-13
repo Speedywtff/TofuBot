@@ -3,6 +3,7 @@ import typing
 import asyncio
 import discord
 from discord.ext import commands
+from CardGames.DefineCards import DefineCards
 
 class Games(commands.Cog):
     def __init__(self, bot):
@@ -61,6 +62,15 @@ class Games(commands.Cog):
                     outcomes.remove(choice)
                 
                 currentPlayer, opponentPlayer = opponentPlayer, currentPlayer
+    
+    @commands.command()
+    async def blackjack(self, ctx):
+        await ctx.send(f"{ctx.author.mention} wants to play blackjack!")
+        dealer = DefineCards()
+        player = DefineCards()
+        await ctx.send(f"Dealer card: {dealer.getRandomCard()}")
+        await ctx.send(f"Player card: {player.getRandomCard()}")
+
 
             
         
