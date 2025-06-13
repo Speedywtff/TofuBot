@@ -5,3 +5,4 @@ __pycache__/
 .Procfile
 .requirenments.txt
 .runtime.txt
+CardGames/__pycache__/
