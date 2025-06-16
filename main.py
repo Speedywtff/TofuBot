@@ -4,13 +4,18 @@ import os
 from dotenv import load_dotenv
 from Games import Games
 from Admin import Admin
+from Random import Random
+from CustomHelp import CustomHelpCommand
 
 
 
 load_dotenv()
 token = os.getenv('TOKEN')
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix = '.', intents = intents)
+
+
+
+bot = commands.Bot(command_prefix = '.', intents = intents, help_command=CustomHelpCommand())
 
 
 
@@ -21,25 +26,27 @@ async def on_ready():
     try:
         await bot.add_cog(Games(bot))
         await bot.add_cog(Admin(bot))
+        await bot.add_cog(Random(bot))
         synced = len(bot.commands)
         print(f"{synced} commands synced.")
     except Exception as e:
         print(f"Error syncing commands: {e}")
 
 
+@bot.event
+async def on_member_join(member : discord.Member):
+    icon = member.display_avatar.url
+    embed = discord.Embed(
+        colour = discord.Color.dark_teal(),
+        title = "New member",
+        description= f"Welcome {member.mention}, We hope you have a great time here!"
+    )
+    embed.set_thumbnail(url=icon)
+    embed.set_image(url="https://www.shutterstock.com/shutterstock/photos/1146069941/display_1500/stock-vector-welcome-poster-with-spectrum-brush-strokes-on-white-background-colorful-gradient-brush-design-1146069941.jpg")
 
-@bot.command()
-async def ping(ctx):
-    latency = round(bot.latency * 1000)
-    await ctx.send(content=f"Pong! Latency: {latency}ms")
+    channel = bot.get_channel(1382587220048875520)
 
-@bot.command()
-async def hello(ctx):
-    await ctx.send(content = f"Hello, {ctx.author.mention}! how are you?")
-
-@bot.command()
-async def bye(ctx):
-    await ctx.send(content = f"Bye bye, {ctx.author.mention}! Oh, wait. You arent leaving...")
+    await channel.send(embed=embed)
 
 
 
