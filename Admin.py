@@ -15,13 +15,14 @@ class Admin(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.send("You dont have all the requirements :angry:")
     
+    
     @commands.command()
     @commands.has_permissions(manage_channels = True)
     async def ignore_channel(self, ctx, channel : discord.TextChannel):
         await ctx.send(f"ignoring: {channel.mention}")
 #tofinish
 
-    @commands.command(description = "Bans member. Usage: <prefix>ban <@UserId> reason. reason is optional")
+    @commands.command()
     @commands.has_permissions(ban_members = True)
     async def ban(self, ctx, member : discord.Member, *, reasonBanned : str = None):
         try:
@@ -30,7 +31,13 @@ class Admin(commands.Cog):
                 return
 
             await member.ban(reason=reasonBanned)
-            await ctx.send(f"{member} has been banned for reason: {reasonBanned}.")
+
+            channel = self.bot.get_channel(1382500608522584135)
+            
+            if channel:
+                await channel.send(f"{member} has been banned for reason: {reasonBanned}.")
+            else:
+                await ctx.send(f"{member} has been banned for reason: {reasonBanned}.")
 
         except discord.NotFound:
             await ctx.send("**Member not found.**")
@@ -54,7 +61,7 @@ class Admin(commands.Cog):
             await ctx.guild.unban(member, reason=reasonUnban)
             await ctx.send(f"{member} unbanned!")
         except discord.NotFound:
-            await ctx.send("**Member not found.**")
+            await ctx.send("**Member either not found or was not in the ban list.**")
         except discord.Forbidden:
             await ctx.send("**You do not have the required permissions for this command**")
         except discord.HTTPException:
