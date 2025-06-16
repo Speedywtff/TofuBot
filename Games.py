@@ -63,18 +63,6 @@ class Games(commands.Cog):
                 
                 currentPlayer, opponentPlayer = opponentPlayer, currentPlayer
     
-    @commands.command(brief = "Blackjack! (Work in progress)")
-    async def blackjack(self, ctx):
-        await ctx.send(f"{ctx.author.mention} wants to play blackjack!")
-        dealer = Blackjack()
-        player = Blackjack()
-        time.sleep(2)
-        await ctx.send("The game is beginning!")
-        dFirstCard = dealer.getCard()
-        await ctx.send(f"**The dealers** first card is: `{dFirstCard["value"]} of {dFirstCard["suite"]}`")
-        pFirstCard = player.getCard()
-        time.sleep(1)
-        await ctx.send(f"**The players** first card is: `{pFirstCard["value"]} of {pFirstCard["suite"]}`")
 
 
             
