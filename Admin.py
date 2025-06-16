@@ -16,13 +16,13 @@ class Admin(commands.Cog):
             await ctx.send("You dont have all the requirements :angry:")
     
     
-    @commands.command()
+    @commands.command(brief = "Ignore this channel! (Work in progress)")
     @commands.has_permissions(manage_channels = True)
     async def ignore_channel(self, ctx, channel : discord.TextChannel):
         await ctx.send(f"ignoring: {channel.mention}")
 #tofinish
 
-    @commands.command()
+    @commands.command(brief = "Ban a member!")
     @commands.has_permissions(ban_members = True)
     async def ban(self, ctx, member : discord.Member, *, reasonBanned : str = None):
         try:
@@ -51,7 +51,7 @@ class Admin(commands.Cog):
             print(e)
             await ctx.send("**Unknown error occurred. Please try again**")
     
-    @commands.command(description = "Unbans member. Usage: <prefix>unban <@UserId> reason. reason is optional")
+    @commands.command(brief = "Unban a member!")
     @commands.has_permissions(ban_members = True)
     async def unban(self, ctx, member: discord.User, *, reasonUnban : str = None):
         try:
@@ -69,7 +69,7 @@ class Admin(commands.Cog):
         except Exception as e:
             print(e)
     
-    @commands.command()
+    @commands.command(hidden = True)
     async def can_ban(self, ctx):
         try:
             if ctx.author.guild_permissions.ban_members:
