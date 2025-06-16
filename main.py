@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 import os
-from dotenv import load_dotenv
 from Games import Games
 from Admin import Admin
 from Random import Random
@@ -9,8 +8,7 @@ from CustomHelp import CustomHelpCommand
 
 
 
-load_dotenv()
-token = os.getenv('TOKEN')
+token = os.environ.get('token')
 intents = discord.Intents.all()
 
 
