@@ -40,9 +40,9 @@ async def on_member_join(member : discord.Member):
         description= f"Welcome {member.mention}, We hope you have a great time here!"
     )
     embed.set_thumbnail(url=icon)
-    embed.set_image(url="")
+    embed.set_image(url="https://imgur.com/a/Z48OOcz")
 
-    channel = bot.get_channel(1382587220048875520)
+    channel = bot.get_channel(1382292647074336861)
 
     await channel.send(embed=embed)
 
