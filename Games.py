@@ -9,11 +9,11 @@ class Games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command()
+    @commands.command(brief = "Flip a coin!")
     async def flipcoin(self, ctx):
         await ctx.send(f"{random.choice(["tails", "heads"])}")
     
-    @commands.command()
+    @commands.command(brief = "Russian roulette!")
     async def roulette(self, ctx):
         author : discord.Member = ctx.author.mention
         if(len(ctx.message.mentions) == 0 or len(ctx.message.mentions) > 1):
@@ -63,7 +63,7 @@ class Games(commands.Cog):
                 
                 currentPlayer, opponentPlayer = opponentPlayer, currentPlayer
     
-    @commands.command()
+    @commands.command(brief = "Blackjack! (Work in progress)")
     async def blackjack(self, ctx):
         await ctx.send(f"{ctx.author.mention} wants to play blackjack!")
         dealer = Blackjack()
@@ -71,10 +71,10 @@ class Games(commands.Cog):
         time.sleep(2)
         await ctx.send("The game is beginning!")
         dFirstCard = dealer.getCard()
-        await ctx.send(f"The dealers first card is: {dFirstCard["value"]} of {dFirstCard["suite"]}")
+        await ctx.send(f"**The dealers** first card is: `{dFirstCard["value"]} of {dFirstCard["suite"]}`")
         pFirstCard = player.getCard()
         time.sleep(1)
-        await ctx.send(f"The players first card is: {pFirstCard["value"]} of {pFirstCard["suite"]}")
+        await ctx.send(f"**The players** first card is: `{pFirstCard["value"]} of {pFirstCard["suite"]}`")
 
 
             
