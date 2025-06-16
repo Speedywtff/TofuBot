@@ -13,7 +13,7 @@ intents = discord.Intents.all()
 
 
 
-bot = commands.Bot(command_prefix = '.', intents = intents, help_command=CustomHelpCommand())
+bot = commands.Bot(command_prefix = '.', intents = intents)
 
 
 
@@ -40,7 +40,7 @@ async def on_member_join(member : discord.Member):
         description= f"Welcome {member.mention}, We hope you have a great time here!"
     )
     embed.set_thumbnail(url=icon)
-    embed.set_image(url="https://www.shutterstock.com/shutterstock/photos/1146069941/display_1500/stock-vector-welcome-poster-with-spectrum-brush-strokes-on-white-background-colorful-gradient-brush-design-1146069941.jpg")
+    embed.set_image(url="")
 
     channel = bot.get_channel(1382587220048875520)
 
