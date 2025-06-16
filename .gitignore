@@ -2,7 +2,5 @@
 venv/
 activate-venv.txt
 __pycache__/
-.Procfile
-.requirenments.txt
-.runtime.txt
 CardGames/__pycache__/
+
