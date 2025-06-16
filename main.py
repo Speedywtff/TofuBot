@@ -4,7 +4,6 @@ import os
 from Games import Games
 from Admin import Admin
 from Random import Random
-from CustomHelp import CustomHelpCommand
 
 
 
