@@ -2,3 +2,5 @@
 venv/
 activate-venv.txt
 __pycache__/
+CardGames/__pycache__/
+
