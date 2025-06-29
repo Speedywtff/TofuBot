@@ -51,7 +51,7 @@ class Ticket(commands.Cog):
         await ctx.send(embed = embed, view = ticketbutton())
     
     @commands.has_role(1388671405859672176)
-    @commands.command(brief = "closes a ticket channel")
+    @commands.command(brief = "closes a ticket channel.")
     async def close(self, ctx):
         if ctx.channel.category_id == 1388664502727475321:
             closed = discord.utils.get(ctx.guild.categories, id = 1388664546801094717)
