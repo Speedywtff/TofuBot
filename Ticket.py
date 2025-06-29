@@ -62,14 +62,9 @@ class Ticket(commands.Cog):
     @commands.command(brief = "closes a ticket channel.")
     async def close(self, ctx):
         if ctx.channel.category_id == 1388664502727475321:
-            staffRole = discord.utils.get(guild.roles, name="Staff")
             closed = discord.utils.get(ctx.guild.categories, id = 1388664546801094717)
-            guild = ctx.guild
-            overwrites = {
-            guild.default_role: discord.PermissionOverwrite(read_messages=False),  # Deny everyone by default
-            staffRole: discord.PermissionOverwrite(read_messages=True) if staffRole else None
-            }
-            await ctx.channel.edit(category = closed, overwrites = overwrites)
+            await ctx.channel.edit(category = closed)
+            await ctx.channel.edit(sync_permissions = True)
         else:
             await ctx.send("This command does not work on text channels in this category!")
 
