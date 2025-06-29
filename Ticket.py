@@ -5,9 +5,17 @@ class ticketbutton(discord.ui.View):
     @discord.ui.button(label = "Start a ticket", style=discord.ButtonStyle.primary)
     async def button_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
         
+
         guild = interaction.guild
+        staffRole = discord.utils.get(guild.roles, name="Staff")
         message = f"{interaction.user}s Ticket"
-        channelnew = await guild.create_text_channel(name = message, category = discord.utils.get(guild.categories, id = 1388664502727475321))
+        overwrites = {
+        guild.default_role: discord.PermissionOverwrite(read_messages=False),  # Deny everyone by default
+        interaction.user: discord.PermissionOverwrite(read_messages=True),  # Allow the specified member
+        guild.me: discord.PermissionOverwrite(read_messages=True),  # Allow the bot
+        staffRole: discord.PermissionOverwrite(read_messages=True) if staffRole else None
+        }
+        channelnew = await guild.create_text_channel(name = message, category = discord.utils.get(guild.categories, id = 1388664502727475321), overwrites = overwrites)
 
         embed = discord.Embed(
             colour = discord.Color.dark_embed(),
@@ -27,7 +35,7 @@ class ticketbutton(discord.ui.View):
         staffEmbed = discord.Embed(
             color = discord.Color.red(),
             title = "New Ticket",
-            description= f"hey <@&1382488946507776000>, {interaction.user.mention} just opened a new ticket in: <#{channelnew.id}>. Remember, .close will close the ticket and send it to the closed tickets category",
+            description= f"hey <@&1388671405859672176>, {interaction.user.mention} just opened a new ticket in: <#{channelnew.id}>. Remember, .close will close the ticket and send it to the closed tickets category",
         )
 
         staff = guild.get_channel(1388676915673432224)
