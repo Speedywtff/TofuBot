@@ -4,6 +4,8 @@ import os
 from Games import Games
 from Admin import Admin
 from Random import Random
+from Ticket import Ticket
+
 
 
 
@@ -24,6 +26,7 @@ async def on_ready():
         await bot.add_cog(Games(bot))
         await bot.add_cog(Admin(bot))
         await bot.add_cog(Random(bot))
+        await bot.add_cog(Ticket(bot))
         synced = len(bot.commands)
         print(f"{synced} commands synced.")
     except Exception as e:
